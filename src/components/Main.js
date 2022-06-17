@@ -7,13 +7,13 @@ import UserInfo from './UserInfo';
 const Main = () => {
   return (
     <>
-      <left>
+      <div className="left">
         <UserInfo />
         <SideMenu />
-      </left>
-      <right>
+      </div>
+      <div className="right">
         <Outlet />
-      </right>
+      </div>
     </>
   )
 };

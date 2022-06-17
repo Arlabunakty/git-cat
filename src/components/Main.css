@@ -5,11 +5,11 @@ body {
     padding-left: 280px;
 }
 
-right {
+.right {
     position: relative;
 }
 
-left {
+.left {
     background: #4c56c0;
     height: 100%;
     width: 280px;
