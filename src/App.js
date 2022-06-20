@@ -8,20 +8,25 @@ import About from './components/About';
 import NoPage from './components/NoPage';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import { pathes } from './Routes'
 
 library.add(fas);
+
+const routes = [
+  { path: pathes.repositories, element: <ReposList /> },
+  { path: pathes.followers, element: <FollowersList /> },
+  { path: pathes.subscriptions, element: <Subscriptions /> },
+  { path: pathes.about, element: <About /> },
+  { path: "*", element: <NoPage /> },
+]
 
 function App() {
   return (
     <Routes>
-        <Route path="/" element={<Main />}>
-          <Route index element={<ReposList />} />
-          <Route path="followers" element={<FollowersList />} />
-          <Route path="subscriptions" element={<Subscriptions />} />
-          <Route path="about" element={<About />} />
-          <Route path="*" element={<NoPage />} />
-        </Route>
-      </Routes>
+      <Route path="/" element={<Main />}>
+        {routes.map(route => (<Route key={route.path} path={route.path} element={route.element} />))}
+      </Route>
+    </Routes>
   );
 }
 

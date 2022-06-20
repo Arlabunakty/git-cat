@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import React from "react";
 import App from './App';
 import { BrowserRouter, Router } from "react-router-dom";
-import SideMenuConstants from './SideMenuConstants';
+import { names } from './Routes';
 import { createMemoryHistory } from 'history';
 
 it("defaults to Repositories menu element and Repository List Component", async () => {
@@ -19,9 +19,9 @@ it("defaults to Repositories menu element and Repository List Component", async 
 });
 
 it.each([
-  { menuElement: SideMenuConstants.followers, expectedTextOnTheRight: "FollowersList Component" },
-  { menuElement: SideMenuConstants.subscriptions, expectedTextOnTheRight: "Subscriptions Component" },
-  { menuElement: SideMenuConstants.about, expectedTextOnTheRight: "About Component" },
+  { menuElement: names.followers, expectedTextOnTheRight: "FollowersList Component" },
+  { menuElement: names.subscriptions, expectedTextOnTheRight: "Subscriptions Component" },
+  { menuElement: names.about, expectedTextOnTheRight: "About Component" }
 ])
   ("clicks on the menu item and related component appears", async (test) => {
     const { container } = render(<App />, { wrapper: BrowserRouter });
