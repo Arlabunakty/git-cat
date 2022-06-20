@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const basename = document.querySelector('base').getAttribute('href')
+  ? new URL(document.querySelector('base').getAttribute('href')).pathname
+  : '/';
 
-root.render( 
+root.render(
   <React.StrictMode >
-    <BrowserRouter>
-      <App/>  
-    </BrowserRouter> 
+    <BrowserRouter basename={basename}>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
