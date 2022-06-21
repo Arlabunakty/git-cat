@@ -1,45 +1,49 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import App from './App';
-import { BrowserRouter, Router } from "react-router-dom";
-import { names } from './Routes';
-import { createMemoryHistory } from 'history';
+import waitForExpect from "wait-for-expect"
 
-it("defaults to Repositories menu element and Repository List Component", async () => {
-  const { container } = render(<App />, { wrapper: BrowserRouter });
+const mockfetchUser = jest.fn();
 
-  const activeLinkElements = container.getElementsByClassName("active");
-  expect(activeLinkElements.length).toBe(1);
-  expect(activeLinkElements[0].textContent).toBe('Repositories');
+jest.mock('./services/GitHubUserService', () => ({
+  __esModule: true,
+  fetchUser: () => mockfetchUser()
+}));
 
-  const rightElements = container.getElementsByClassName("right");
-  expect(rightElements.length).toBe(1);
-  expect(rightElements[0].textContent).toBe("ReposList Component");
+const mockMain = jest.fn();
+
+jest.mock("./components/Main", () => (props) => {
+  mockMain(props);
+  return props.user != {} ? <mock-MainComponent data-testid="mockMain" /> : <mock-MainComponent data-testid="noUser" />;
 });
 
-it.each([
-  { menuElement: names.followers, expectedTextOnTheRight: "FollowersList Component" },
-  { menuElement: names.subscriptions, expectedTextOnTheRight: "Subscriptions Component" },
-  { menuElement: names.about, expectedTextOnTheRight: "About Component" }
-])
-  ("clicks on the menu item and related component appears", async (test) => {
-    const { container } = render(<App />, { wrapper: BrowserRouter });
 
-    await userEvent.click(screen.getByTestId(test.menuElement));
+it('when userService.fetchUser fails Promise.reject then show empty user', async () => {
+  mockfetchUser.mockImplementation(() => Promise.reject("reject"));
 
-    const rightElements = container.getElementsByClassName("right");
-    expect(rightElements.length).toBe(1);
-    expect(rightElements[0].textContent).toBe(test.expectedTextOnTheRight);
+  render(<App />, { wrapper: BrowserRouter });
+
+  await screen.findByTestId('mockMain');
+
+  await waitForExpect(() => {
+    expect(mockMain).toHaveBeenNthCalledWith(1, expect.objectContaining({ user: {}, isFetching: true }));
+    expect(mockMain).toHaveBeenNthCalledWith(2, expect.objectContaining({ user: {}, isFetching: true }));
+    expect(mockMain).toHaveBeenNthCalledWith(3, expect.objectContaining({ user: {}, isFetching: false }));
   });
+});
 
-  it("opens non existing page with error", async () => {
-    const history = createMemoryHistory();
-    history.push('/non-existing-path');
+it('when userService.fetchUser successed, then pass user to Main component', async () => {
+  const user = { name: 'test-user' };
+  mockfetchUser.mockImplementation(() => Promise.resolve(user));
 
-    render(<Router location={history.location} navigator={history}>
-        <App />
-    </Router>);
+  render(<App />, { wrapper: BrowserRouter });
 
-    expect(screen.getByTestId('no-page-error')).toBeInTheDocument();
+  await screen.findByTestId('mockMain');
+
+  await waitForExpect(() => {
+    expect(mockMain).toHaveBeenNthCalledWith(1, expect.objectContaining({ user: {}, isFetching: true }));
+    expect(mockMain).toHaveBeenNthCalledWith(2, expect.objectContaining({ user: {}, isFetching: true }));
+    expect(mockMain).toHaveBeenNthCalledWith(3, expect.objectContaining({ user: user, isFetching: false }));
+  });
 });
