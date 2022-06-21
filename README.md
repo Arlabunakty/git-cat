@@ -1,3 +1,5 @@
+![CI/CD](https://github.com/arlabunakty/git-cat/workflows/CI/CD/badge.svg) [![Codecov](https://img.shields.io/codecov/c/github/arlabunakty/git-cat)](https://codecov.io/gh/arlabuankty/git-cat) ![License](https://img.shields.io/github/license/arlabunakty/git-cat)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
