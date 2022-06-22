@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import App from './App';
 import waitForExpect from "wait-for-expect"
+import { user } from './__test__/GitHubUser'
 
 const mockfetchUser = jest.fn();
 
@@ -34,7 +35,6 @@ it('when userService.fetchUser fails Promise.reject then show empty user', async
 });
 
 it('when userService.fetchUser successed, then pass user to Main component', async () => {
-  const user = { name: 'test-user' };
   mockfetchUser.mockImplementation(() => Promise.resolve(user));
 
   render(<App />, { wrapper: BrowserRouter });
