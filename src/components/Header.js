@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import octocatLogo from "./../assets/octocat.png";
 
 const Header = ({ followers, forks, received_events }) => (
   <>
@@ -11,7 +12,7 @@ const Header = ({ followers, forks, received_events }) => (
             <br />
             GitCat
           </div>
-          <img src="/octocat.png" className="octocat" alt="octocat" />
+          <img src={octocatLogo} className="octocat" alt="octocat" />
         </div>
       </div>
       <div className="block">
