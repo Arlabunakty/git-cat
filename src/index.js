@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-const basename = document.querySelector('base').getAttribute('href')
-  ? new URL(document.querySelector('base').getAttribute('href')).pathname
-  : '/';
+const root = ReactDOM.createRoot(document.getElementById("root"));
+const basename = document.querySelector("base").getAttribute("href")
+  ? new URL(document.querySelector("base").getAttribute("href")).pathname
+  : "/";
 
 root.render(
-  <React.StrictMode >
+  <React.StrictMode>
     <BrowserRouter basename={basename}>
       <App />
     </BrowserRouter>
