@@ -1,8 +1,8 @@
 import React from "react";
-import { render, screen } from '@testing-library/react';
+import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import Main from './Main';
-import { user } from './../__test__/GitHubUser'
+import Main from "./Main";
+import { user } from "./../__test__/GitHubUser";
 
 const mockUserInfo = jest.fn();
 
@@ -12,19 +12,19 @@ jest.mock("./UserInfo", () => (props) => {
 });
 
 test("When fetch in progress inform user", async () => {
-    const {container} = render(<Main isFetching={true}/>);
-    
-    expect(container.textContent).toEqual("Fetching...");
+  const { container } = render(<Main isFetching={true} />);
+
+  expect(container.textContent).toEqual("Fetching...");
 });
 
 test("If isFetching=false and user passed, then UserInfo is called with props from user", () => {
-  render(<Main user={user} isFetching={false}/>, { wrapper: BrowserRouter });
+  render(<Main user={user} isFetching={false} />, { wrapper: BrowserRouter });
 
   expect(mockUserInfo).toHaveBeenCalledWith(
     expect.objectContaining({
       name: user.name,
       email: user.email,
-      avatar_url: user.avatar_url
+      avatar_url: user.avatar_url,
     })
   );
 });

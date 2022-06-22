@@ -1,38 +1,39 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import React from "react";
 import { BrowserRouter, Router } from "react-router-dom";
-import {names, default as routes} from './../Routes';
-import { createMemoryHistory } from 'history';
-import SideMenu from './SideMenu';
+import { names, default as routes } from "./../Routes";
+import { createMemoryHistory } from "history";
+import SideMenu from "./SideMenu";
 
 test.each(routes)("menu item click affects path", async (route) => {
-        const history = createMemoryHistory();
-        render(<Router location={history.location} navigator={history}>
-            <SideMenu />
-        </Router>);
+  const history = createMemoryHistory();
+  render(
+    <Router location={history.location} navigator={history}>
+      <SideMenu />
+    </Router>
+  );
 
-        await userEvent.click(screen.getByTestId(route.name));
+  await userEvent.click(screen.getByTestId(route.name));
 
-        expect(history.location.pathname).toBe(route.path);
-    });
+  expect(history.location.pathname).toBe(route.path);
+});
 
-test.each(routes)
-    ("menu item click active it", async (route) => {
-        const { container } = render(<SideMenu />, { wrapper: BrowserRouter });
+test.each(routes)("menu item click active it", async (route) => {
+  const { container } = render(<SideMenu />, { wrapper: BrowserRouter });
 
-        await userEvent.click(screen.getByTestId(route.name));
+  await userEvent.click(screen.getByTestId(route.name));
 
-        const activeLinkElements = container.getElementsByClassName("active");
-        expect(activeLinkElements.length).toBe(1);
-        expect(activeLinkElements[0].textContent).toBe(route.name);
-    });
+  const activeLinkElements = container.getElementsByClassName("active");
+  expect(activeLinkElements.length).toBe(1);
+  expect(activeLinkElements[0].textContent).toBe(route.name);
+});
 
 it("has copyright in the footer", async () => {
-    const { container } = render(<SideMenu />, { wrapper: BrowserRouter });
+  const { container } = render(<SideMenu />, { wrapper: BrowserRouter });
 
-    const footers = container.getElementsByClassName("footer");
-    expect(footers.length).toBe(1);
-    expect(footers[0]).toBeInTheDocument();
-    expect(footers[0].textContent).toEqual(expect.stringMatching('GL JS \\d{4}'));
+  const footers = container.getElementsByClassName("footer");
+  expect(footers.length).toBe(1);
+  expect(footers[0]).toBeInTheDocument();
+  expect(footers[0].textContent).toEqual(expect.stringMatching("GL JS \\d{4}"));
 });

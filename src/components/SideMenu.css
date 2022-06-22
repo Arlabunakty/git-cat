@@ -1,60 +1,60 @@
 ul {
-    list-style: none;
-    padding: 0.7em 0 0 0;
-    margin: 0;
+  list-style: none;
+  padding: 0.7em 0 0 0;
+  margin: 0;
 }
 
 ul li {
-    margin: 0;
-    padding: 0;
-    height: 48px;
-    background-repeat: no-repeat;
-    background-position: left 15px center;
-    background-size: auto 20px;
-    transition: all 0.15s linear;
-    cursor: pointer;
-    text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  height: 48px;
+  background-repeat: no-repeat;
+  background-position: left 15px center;
+  background-size: auto 20px;
+  transition: all 0.15s linear;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
 ul li a {
-    display: block;
-    margin-left: 0.6em;
-    padding: 0.9em 1em 0.9em 1.7em;
+  display: block;
+  margin-left: 0.6em;
+  padding: 0.9em 1em 0.9em 1.7em;
 }
 
 ul li a svg {
-    width: 28px;
+  width: 28px;
 }
 
 ul li a span {
-    padding-left: 15px;
+  padding-left: 15px;
 }
 
 ul li a:link,
 ul li a:visited,
 ul li a:hover,
 ul li a:active {
-    text-decoration: none;
-    color: #ffffff;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 ul li a.active {
-    text-decoration: none;
-    background-color: #f5f7fb;
-    border-top-left-radius: 2em;
-    border-bottom-left-radius: 2em;
-    color: #4c56c0;
+  text-decoration: none;
+  background-color: #f5f7fb;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+  color: #4c56c0;
 }
 
 ul li:focus {
-    outline: none;
+  outline: none;
 }
 
 .footer {
-    padding-bottom: 2em;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
+  padding-bottom: 2em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
 }
