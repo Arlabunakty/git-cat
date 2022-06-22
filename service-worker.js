@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://arlabunakty.github.io/git-cat/precache-manifest.d03a939a6989c4a641c0400e3c7c1419.js"
+  "https://arlabunakty.github.io/git-cat/precache-manifest.742aed669338e913eadd43520038f343.js"
 );
 
 workbox.clientsClaim();
