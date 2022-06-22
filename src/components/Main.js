@@ -3,6 +3,7 @@ import { Outlet as Content } from "react-router-dom";
 import "./Main.css";
 import SideMenu from "./SideMenu";
 import UserInfo from "./UserInfo";
+import Header from "./Header";
 
 const Main = ({ isFetching, user }) => {
   if (isFetching) {
@@ -19,7 +20,14 @@ const Main = ({ isFetching, user }) => {
         <SideMenu />
       </div>
       <div className="right">
-        <Content />
+        <Header
+          followers={user.followers}
+          forks={user.forks}
+          received_events={user.received_events}
+        />
+        <div className="content">
+          <Content />
+        </div>
       </div>
     </div>
   );

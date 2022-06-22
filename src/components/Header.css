@@ -1,0 +1,46 @@
+.header-block {
+  padding: 1.6em 0.9em;
+}
+
+.block {
+  margin: 0 0.9em;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 6.5em;
+  width: 17em;
+  background: #4c56c0;
+  color: #ffffff;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+  vertical-align: top;
+}
+
+.block-green {
+  background: #9dd6ab;
+}
+
+.text {
+  font-weight: bold;
+  padding: 1em 1em;
+  text-align: left;
+}
+
+.name-cell {
+  width: 12em;
+}
+
+.octocat {
+  width: 110px;
+}
+
+.octocat-container {
+  display: flex;
+}
+
+.octocat-text {
+  font-size: 20px;
+  width: 12em;
+  text-align: center;
+}
