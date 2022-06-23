@@ -1,0 +1,77 @@
+.table-header {
+  display: flex;
+  vertical-align: top;
+  text-align: left;
+  margin: 0;
+  padding: 1em 1em;
+}
+
+.table-name {
+  font-weight: bold;
+}
+
+.icon-rtl {
+  padding-right: 25px;
+  background: url("./../assets/101791-200.png") no-repeat right;
+  background-size: 20px;
+  width: 8em;
+  border-color: #8b8b8b;
+  border-radius: 0.25em;
+}
+.left-header {
+  display: flex;
+  flex-direction: column;
+}
+.right-header {
+  margin-left: auto;
+  order: 2;
+}
+.table {
+  width: 90%;
+  margin: 0 1.8em;
+  border: 0px;
+  clear: both;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.th,
+.td {
+  font-weight: normal;
+  background: #ffffff;
+  color: black;
+  height: 3em;
+}
+
+.td {
+  text-align: center;
+}
+
+table .th:nth-child(1) {
+  border-radius: 0 0 0 1em;
+}
+table .th:nth-last-child(1) {
+  border-radius: 0 0 1em 0;
+}
+
+table .th.first-row {
+  border-radius: 1em 1em 0 0;
+}
+
+table .td:nth-child(1) {
+  border-radius: 1em 0 0 1em;
+}
+table .td:nth-last-child(1) {
+  border-radius: 0 1em 1em 0;
+}
+.tbody:before {
+  line-height: 0.25em;
+  content: "\200C";
+  display: block;
+}
+.td {
+  border-bottom-style: dashed;
+  border-bottom-color: #f3f7fa;
+  max-width: 15em;
+  height: 5em;
+}

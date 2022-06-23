@@ -1,5 +1,6 @@
 body {
-  background: white;
+  /* background: white; */
+  background: #f5f7fb;
   font-family: "Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
   color: black;
   padding-left: 280px;
@@ -20,5 +21,5 @@ body {
   outline: none;
   border-top-right-radius: 2em;
   border-bottom-right-radius: 2em;
-  color: #ffffff;
+  color: #f5f7fb;
 }

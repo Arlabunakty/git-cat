@@ -11,6 +11,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
 library.add(fas);
+jest.setTimeout(10000);
 
 beforeEach(() => {
   jest.clearAllMocks();

@@ -1,0 +1,19 @@
+.owner-cell {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.owner-avatar {
+  width: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.owner-celltext {
+  display: flex;
+  flex-flow: column wrap;
+}

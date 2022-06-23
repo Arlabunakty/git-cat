@@ -13,14 +13,6 @@ import * as userService from "./services/GitHubUserService";
 
 library.add(fas);
 
-const routes = [
-  { path: pathes.repositories, element: <ReposList /> },
-  { path: pathes.followers, element: <FollowersList /> },
-  { path: pathes.subscriptions, element: <Subscriptions /> },
-  { path: pathes.about, element: <About /> },
-  { path: "*", element: <NoPage /> },
-];
-
 function App() {
   const [data, setData] = useState({ user: {}, isFetching: true });
 
@@ -37,6 +29,17 @@ function App() {
     };
     init();
   }, []);
+
+  const routes = [
+    {
+      path: pathes.repositories,
+      element: <ReposList repos={data.user.repos} />,
+    },
+    { path: pathes.followers, element: <FollowersList /> },
+    { path: pathes.subscriptions, element: <Subscriptions /> },
+    { path: pathes.about, element: <About /> },
+    { path: "*", element: <NoPage /> },
+  ];
 
   return (
     <Routes>
