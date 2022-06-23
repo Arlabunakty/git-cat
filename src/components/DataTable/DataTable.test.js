@@ -121,30 +121,3 @@ it.each([
     test.expectedNumOfRows
   );
 });
-
-it("renders table with custom cell renderer", async () => {
-  const { container } = render(
-    <DataTable
-      title="TableName"
-      description="TableDescription"
-      headers={[
-        {
-          name: "First",
-          renderFunc: (cell) => (
-            <span>{cell.name + "-" + cell.description}</span>
-          ),
-          propertyName: "nestedObject",
-        },
-      ]}
-      data={[
-        { nestedObject: { name: "TestName", description: "TestDescription" } },
-      ]}
-    />
-  );
-
-  const rows = container.querySelectorAll(".table-row");
-  expect(rows.length).toEqual(1);
-  const cells = rows[0].querySelectorAll(".td");
-  expect(cells.length).toEqual(1);
-  expect(cells[0].innerHTML).toEqual("<span>TestName-TestDescription</span>");
-});

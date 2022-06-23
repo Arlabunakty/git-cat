@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import ReposList from "./ReposList";
-import { user } from "./../__test__/GitHubUser";
+import { user } from "./../../__test__/GitHubUser";
 
 test("has custom rendered first column", async () => {
   const { container } = render(<ReposList repos={user.repos} />);

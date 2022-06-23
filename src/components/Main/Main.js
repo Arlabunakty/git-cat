@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet as Content } from "react-router-dom";
 import "./Main.css";
-import SideMenu from "./SideMenu";
-import UserInfo from "./UserInfo";
-import Header from "./Header";
+import SideMenu from "./../SideMenu/SideMenu";
+import UserInfo from "./../UserInfo/UserInfo";
+import Header from "./../Header/Header";
 
 const Main = ({ isFetching, user }) => {
   if (isFetching) {

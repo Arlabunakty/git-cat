@@ -12,7 +12,7 @@
 
 .icon-rtl {
   padding-right: 25px;
-  background: url("./../assets/101791-200.png") no-repeat right;
+  background: url("./../../assets/101791-200.png") no-repeat right;
   background-size: 20px;
   width: 8em;
   border-color: #8b8b8b;

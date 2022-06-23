@@ -2,11 +2,11 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import Main from "./Main";
-import { user } from "./../__test__/GitHubUser";
+import { user } from "./../../__test__/GitHubUser";
 
 const mockUserInfo = jest.fn();
 
-jest.mock("./UserInfo", () => (props) => {
+jest.mock("./../UserInfo/UserInfo", () => (props) => {
   mockUserInfo(props);
   return <mock-userInfoComponent />;
 });

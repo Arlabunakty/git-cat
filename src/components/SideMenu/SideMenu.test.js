@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { BrowserRouter, Router } from "react-router-dom";
-import { names, default as routes } from "./../Routes";
+import { names, default as routes } from "./../../Routes";
 import { createMemoryHistory } from "history";
 import SideMenu from "./SideMenu";
 

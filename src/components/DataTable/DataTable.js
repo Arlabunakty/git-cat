@@ -3,7 +3,7 @@ import "./DataTable.css";
 
 const DataTable = ({ title, description, headers, data }) => {
   const [search, setSearch] = useState("");
-  const originalData = data || [];
+  const originalData = data;
   const searchableHeaders = headers.filter((header) => header.searchable);
 
   let resultData = originalData;
@@ -53,22 +53,11 @@ const DataTable = ({ title, description, headers, data }) => {
   );
 };
 
-function defaultRenderFunc(value) {
-  if (value === null) {
-    return "";
-  } else if (typeof value === "string") {
-    return value;
-  } else {
-    return "" + value;
-  }
-}
-
 function renderCell(header, j, row) {
+  const value = row[header.propertyName];
   return (
     <td className="td" key={j}>
-      {typeof header.renderFunc === "function"
-        ? header.renderFunc(row[header.propertyName])
-        : defaultRenderFunc(row[header.propertyName])}
+      {typeof value === "boolean" ? "" + value : value}
     </td>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import octocatLogo from "./../assets/octocat.png";
+import octocatLogo from "./../../assets/octocat.png";
 
 const Header = ({ followers, forks, received_events }) => {
   const rows = [
