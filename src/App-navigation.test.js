@@ -27,7 +27,7 @@ it("defaults to Repositories menu element and Repository List Component", async 
   expect(activeLinkElements.length).toBe(1);
   expect(activeLinkElements[0].textContent).toBe("Repositories");
 
-  const rightElements = container.getElementsByClassName("right");
+  const rightElements = container.getElementsByClassName("content");
   expect(rightElements.length).toBe(1);
   expect(rightElements[0].textContent).toBe("ReposList Component");
 });
@@ -49,7 +49,7 @@ it.each([
 
   await userEvent.click(screen.getByTestId(test.menuElement));
 
-  const rightElements = container.getElementsByClassName("right");
+  const rightElements = container.getElementsByClassName("content");
   expect(rightElements.length).toBe(1);
   expect(rightElements[0].textContent).toBe(test.expectedTextOnTheRight);
 });
