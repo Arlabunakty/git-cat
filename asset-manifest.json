@@ -1,5 +1,5 @@
 {
-  "main.css": "https://arlabunakty.github.io/git-cat/static/css/main.96f603b9.chunk.css",
+  "main.css": "https://arlabunakty.github.io/git-cat/static/css/main.d080149a.chunk.css",
   "main.js": "https://arlabunakty.github.io/git-cat/static/js/main.30292de7.chunk.js",
   "main.js.map": "https://arlabunakty.github.io/git-cat/static/js/main.30292de7.chunk.js.map",
   "runtime~main.js": "https://arlabunakty.github.io/git-cat/static/js/runtime~main.072881a8.js",
@@ -9,8 +9,8 @@
   "static/js/3.c3bc911a.chunk.js": "https://arlabunakty.github.io/git-cat/static/js/3.c3bc911a.chunk.js",
   "static/js/3.c3bc911a.chunk.js.map": "https://arlabunakty.github.io/git-cat/static/js/3.c3bc911a.chunk.js.map",
   "index.html": "https://arlabunakty.github.io/git-cat/index.html",
-  "precache-manifest.36ec7f5bd009294ea7e5d2f78b3c2ddd.js": "https://arlabunakty.github.io/git-cat/precache-manifest.36ec7f5bd009294ea7e5d2f78b3c2ddd.js",
+  "precache-manifest.38ecaf0663e2f195ea0a17a438e306bb.js": "https://arlabunakty.github.io/git-cat/precache-manifest.38ecaf0663e2f195ea0a17a438e306bb.js",
   "service-worker.js": "https://arlabunakty.github.io/git-cat/service-worker.js",
-  "static/css/main.96f603b9.chunk.css.map": "https://arlabunakty.github.io/git-cat/static/css/main.96f603b9.chunk.css.map",
+  "static/css/main.d080149a.chunk.css.map": "https://arlabunakty.github.io/git-cat/static/css/main.d080149a.chunk.css.map",
   "static/media/octocat.png": "https://arlabunakty.github.io/git-cat/static/media/octocat.8f77f332.png"
 }
