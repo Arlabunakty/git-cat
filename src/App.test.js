@@ -14,7 +14,7 @@ jest.mock("./services/GitHubUserService", () => ({
 
 const mockMain = jest.fn();
 
-jest.mock("./components/Main", () => (props) => {
+jest.mock("./components/Main/Main", () => (props) => {
   mockMain(props);
   return props.user != {} ? (
     <mock-MainComponent data-testid="mockMain" />

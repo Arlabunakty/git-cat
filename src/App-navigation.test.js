@@ -29,7 +29,7 @@ it("defaults to Repositories menu element and Repository List Component", async 
 
   const rightElements = container.getElementsByClassName("content");
   expect(rightElements.length).toBe(1);
-  expect(rightElements[0].textContent).toBe("ReposList Component");
+  expect(rightElements[0].textContent).toContain("Repositories");
 });
 
 it.each([
@@ -47,7 +47,11 @@ it.each([
   const { container } = render(<App />, { wrapper: BrowserRouter });
   await screen.findByTestId("main");
 
-  await userEvent.click(screen.getByTestId(test.menuElement));
+  await userEvent.click(await screen.getByTestId(test.menuElement));
+
+  const activeLinkElements = container.getElementsByClassName("active");
+  expect(activeLinkElements.length).toBe(1);
+  expect(activeLinkElements[0].textContent).toBe(test.menuElement);
 
   const rightElements = container.getElementsByClassName("content");
   expect(rightElements.length).toBe(1);

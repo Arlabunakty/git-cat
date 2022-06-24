@@ -10,6 +10,8 @@ export const fetchUser = async () => {
 
   const responseRepositories = await fetch(user.repos_url);
   const repositories = await responseRepositories.json();
+  user.repos = repositories;
+  user.repos.forEach((repo) => (repo.owner.name = user.name));
   user.forks = repositories
     .map((r) => r.forks_count)
     .reduce(function (previousValue, currentValue) {

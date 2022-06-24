@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { BrowserRouter, Router } from "react-router-dom";
-import { names, default as routes } from "./../Routes";
+import { names, default as routes } from "./../../Routes";
 import { createMemoryHistory } from "history";
 import SideMenu from "./SideMenu";
 
@@ -27,13 +27,4 @@ test.each(routes)("menu item click active it", async (route) => {
   const activeLinkElements = container.getElementsByClassName("active");
   expect(activeLinkElements.length).toBe(1);
   expect(activeLinkElements[0].textContent).toBe(route.name);
-});
-
-it("has copyright in the footer", async () => {
-  const { container } = render(<SideMenu />, { wrapper: BrowserRouter });
-
-  const footers = container.getElementsByClassName("footer");
-  expect(footers.length).toBe(1);
-  expect(footers[0]).toBeInTheDocument();
-  expect(footers[0].textContent).toEqual(expect.stringMatching("GL JS \\d{4}"));
 });

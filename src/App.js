@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Main from "./components/Main";
-import ReposList from "./components/ReposList";
+import Main from "./components/Main/Main";
+import ReposList from "./components/ReposList/ReposList";
 import FollowersList from "./components/FollowersList";
 import Subscriptions from "./components/Subscriptions";
 import About from "./components/About";
@@ -12,14 +12,6 @@ import { pathes } from "./Routes";
 import * as userService from "./services/GitHubUserService";
 
 library.add(fas);
-
-const routes = [
-  { path: pathes.repositories, element: <ReposList /> },
-  { path: pathes.followers, element: <FollowersList /> },
-  { path: pathes.subscriptions, element: <Subscriptions /> },
-  { path: pathes.about, element: <About /> },
-  { path: "*", element: <NoPage /> },
-];
 
 function App() {
   const [data, setData] = useState({ user: {}, isFetching: true });
@@ -37,6 +29,17 @@ function App() {
     };
     init();
   }, []);
+
+  const routes = [
+    {
+      path: pathes.repositories,
+      element: <ReposList repos={data.user.repos || []} />,
+    },
+    { path: pathes.followers, element: <FollowersList /> },
+    { path: pathes.subscriptions, element: <Subscriptions /> },
+    { path: pathes.about, element: <About /> },
+    { path: "*", element: <NoPage /> },
+  ];
 
   return (
     <Routes>

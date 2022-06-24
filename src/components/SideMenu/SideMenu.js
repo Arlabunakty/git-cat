@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import "./SideMenu.css";
-import routes from "./../Routes";
+import routes from "./../../Routes";
 
 const activeClassNameFunc = ({ isActive }) => (isActive ? "active" : null);
 
@@ -23,7 +23,6 @@ const SideMenu = () => {
           </li>
         ))}
       </ul>
-      <div className="footer">GL JS 2022</div>
     </>
   );
 };
