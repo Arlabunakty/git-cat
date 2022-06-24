@@ -28,3 +28,14 @@ test("If isFetching=false and user passed, then UserInfo is called with props fr
     })
   );
 });
+
+it("has copyright in the footer", async () => {
+  const { container } = render(<Main user={user} isFetching={false} />, {
+    wrapper: BrowserRouter,
+  });
+
+  const footers = container.getElementsByClassName("footer");
+  expect(footers.length).toBe(1);
+  expect(footers[0]).toBeInTheDocument();
+  expect(footers[0].textContent).toEqual(expect.stringMatching("GL JS \\d{4}"));
+});

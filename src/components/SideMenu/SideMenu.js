@@ -23,7 +23,6 @@ const SideMenu = () => {
           </li>
         ))}
       </ul>
-      <div className="footer">GL JS 2022</div>
     </>
   );
 };

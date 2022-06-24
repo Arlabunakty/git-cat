@@ -28,12 +28,3 @@ test.each(routes)("menu item click active it", async (route) => {
   expect(activeLinkElements.length).toBe(1);
   expect(activeLinkElements[0].textContent).toBe(route.name);
 });
-
-it("has copyright in the footer", async () => {
-  const { container } = render(<SideMenu />, { wrapper: BrowserRouter });
-
-  const footers = container.getElementsByClassName("footer");
-  expect(footers.length).toBe(1);
-  expect(footers[0]).toBeInTheDocument();
-  expect(footers[0].textContent).toEqual(expect.stringMatching("GL JS \\d{4}"));
-});

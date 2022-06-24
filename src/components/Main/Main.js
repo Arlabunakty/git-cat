@@ -10,7 +10,7 @@ const Main = ({ isFetching, user }) => {
     return <p>Fetching...</p>;
   }
   return (
-    <div data-testid="main">
+    <div data-testid="main" className="main">
       <div className="left">
         <UserInfo
           avatar_url={user.avatar_url}
@@ -18,6 +18,7 @@ const Main = ({ isFetching, user }) => {
           email={user.email}
         />
         <SideMenu />
+        <div className="footer">GL JS 2022</div>
       </div>
       <div className="right">
         <Header

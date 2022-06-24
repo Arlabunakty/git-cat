@@ -15,41 +15,43 @@ const DataTable = ({ title, description, headers, data }) => {
     );
   }
   return (
-    <table className="table">
-      <thead className="thead">
-        <tr>
-          <th scope="col" colSpan={headers.length} className="th first-row">
-            <div className="table-header">
-              <div className="left-header">
-                <span data-testid="table-name" className="table-name">
-                  {title}
-                </span>
-                <span data-testid="table-description">{description}</span>
+    <div className="table-container">
+      <table className="table">
+        <thead className="thead">
+          <tr className="tr">
+            <th scope="col" colSpan={headers.length} className="th first-row">
+              <div className="table-header">
+                <div className="left-header">
+                  <span data-testid="table-name" className="table-name">
+                    {title}
+                  </span>
+                  <span data-testid="table-description">{description}</span>
+                </div>
+                <div className="right-header">
+                  <input
+                    data-testid="search-input"
+                    type="text"
+                    className="icon-rtl"
+                    placeholder="Search"
+                    onChange={(e) => setSearch(e.target.value.toLowerCase())}
+                  />
+                </div>
               </div>
-              <div className="right-header">
-                <input
-                  data-testid="search-input"
-                  type="text"
-                  className="icon-rtl"
-                  placeholder="Search"
-                  onChange={(e) => setSearch(e.target.value.toLowerCase())}
-                />
-              </div>
-            </div>
-          </th>
-        </tr>
-        <tr>
-          {headers.map((h) => (
-            <th key={h.name} scope="col" className="th column-name">
-              {h.name}
             </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody className="tbody">
-        {resultData.map((row, i) => renderRow(row, i, headers))}
-      </tbody>
-    </table>
+          </tr>
+          <tr>
+            {headers.map((h) => (
+              <th key={h.name} scope="col" className="th column-name">
+                {h.name}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="tbody">
+          {resultData.map((row, i) => renderRow(row, i, headers))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
@@ -63,7 +65,7 @@ function renderCell(header, j, row) {
 }
 function renderRow(row, i, headers) {
   return (
-    <tr className="table-row" key={i}>
+    <tr className="tr table-row" key={i}>
       {headers.map((header, j) => renderCell(header, j, row))}
     </tr>
   );
