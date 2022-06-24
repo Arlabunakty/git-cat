@@ -1,7 +1,7 @@
 {
-  "main.css": "https://arlabunakty.github.io/git-cat/static/css/main.7409b8cd.chunk.css",
-  "main.js": "https://arlabunakty.github.io/git-cat/static/js/main.8bba3a66.chunk.js",
-  "main.js.map": "https://arlabunakty.github.io/git-cat/static/js/main.8bba3a66.chunk.js.map",
+  "main.css": "https://arlabunakty.github.io/git-cat/static/css/main.c114fdc3.chunk.css",
+  "main.js": "https://arlabunakty.github.io/git-cat/static/js/main.1fe7fcd2.chunk.js",
+  "main.js.map": "https://arlabunakty.github.io/git-cat/static/js/main.1fe7fcd2.chunk.js.map",
   "runtime~main.js": "https://arlabunakty.github.io/git-cat/static/js/runtime~main.072881a8.js",
   "runtime~main.js.map": "https://arlabunakty.github.io/git-cat/static/js/runtime~main.072881a8.js.map",
   "static/js/2.5f64a174.chunk.js": "https://arlabunakty.github.io/git-cat/static/js/2.5f64a174.chunk.js",
@@ -9,8 +9,8 @@
   "static/js/3.c3bc911a.chunk.js": "https://arlabunakty.github.io/git-cat/static/js/3.c3bc911a.chunk.js",
   "static/js/3.c3bc911a.chunk.js.map": "https://arlabunakty.github.io/git-cat/static/js/3.c3bc911a.chunk.js.map",
   "index.html": "https://arlabunakty.github.io/git-cat/index.html",
-  "precache-manifest.00399597a414fb63b23710c704ac4742.js": "https://arlabunakty.github.io/git-cat/precache-manifest.00399597a414fb63b23710c704ac4742.js",
+  "precache-manifest.7d10530e55f6ccb9cc621d0530d1ec16.js": "https://arlabunakty.github.io/git-cat/precache-manifest.7d10530e55f6ccb9cc621d0530d1ec16.js",
   "service-worker.js": "https://arlabunakty.github.io/git-cat/service-worker.js",
-  "static/css/main.7409b8cd.chunk.css.map": "https://arlabunakty.github.io/git-cat/static/css/main.7409b8cd.chunk.css.map",
+  "static/css/main.c114fdc3.chunk.css.map": "https://arlabunakty.github.io/git-cat/static/css/main.c114fdc3.chunk.css.map",
   "static/media/octocat.png": "https://arlabunakty.github.io/git-cat/static/media/octocat.8f77f332.png"
 }
