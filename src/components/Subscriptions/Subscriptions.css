@@ -1,0 +1,19 @@
+.subscription-owner-cell > * {
+  flex: 1;
+}
+.subscription-owner-cell {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+  align-items: center;
+}
+
+.subscription-owner-avatar {
+  width: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+}

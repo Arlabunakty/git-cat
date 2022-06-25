@@ -12,11 +12,6 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 
 library.add(fas);
 
-beforeEach(() => {
-  jest.clearAllMocks();
-  jest.resetModules();
-});
-
 afterEach(() => {
   jest.clearAllMocks();
   jest.resetModules();

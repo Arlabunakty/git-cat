@@ -1,12 +1,12 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { user, repos_raw } from "./../../__test__/GitHubUser";
+import { user, followers_raw } from "./../../__test__/GitHubUser";
 
 jest.mock("./../../services/GitHubUserService");
 import {
   mock,
-  mockFetchUserRepositories,
+  mockFetchUserFollowers,
 } from "./../../services/__mocks__/GitHubUserService";
 
 beforeEach(() => {
@@ -29,34 +29,32 @@ jest.mock("./../DataTable/DataTable", () => (props) => {
   return <mock-DataTableComponent />;
 });
 
-import ReposList from "./ReposList";
+import FollowersList from "./FollowersList";
 
 test("has custom rendered first column", async () => {
-  await act(async () => render(<ReposList user={user} />));
+  await act(async () => render(<FollowersList user={user} />));
 
   expect(mockDataTableSource).toBeCalledTimes(1);
   expect(mockDataTable).toBeCalledTimes(1);
   const capturedSourceArguments = mockDataTableSource.mock.calls[0][0];
-  expect(await capturedSourceArguments.dataSourceFunction()).toEqual(repos_raw);
-  expect(mockFetchUserRepositories).toBeCalledTimes(1);
-  expect(mockFetchUserRepositories).toBeCalledWith(user);
-  const data = [repos_raw[0]];
+  expect(await capturedSourceArguments.dataSourceFunction()).toEqual(
+    followers_raw
+  );
+  expect(mockFetchUserFollowers).toBeCalledTimes(1);
+  expect(mockFetchUserFollowers).toBeCalledWith(user);
+  const data = [followers_raw[0]];
   capturedSourceArguments.dataTransformFunction(data);
-  expect(data[0].ownerCell).toEqual(
-    <div className="owner-cell">
-      <img
-        className="owner-avatar"
-        src="https://avatars.githubusercontent.com/u/3165275?v=4"
-        alt="avatar"
-      />
-      <div className="owner-celltext">
-        <span>Denys Durniev</span>
-        <span>Arlabunakty</span>
-      </div>
-    </div>
+  expect(data[0].avatar).toEqual(
+    <img
+      className="follower-avatar"
+      src="https://avatars.githubusercontent.com/u/32126091?v=4"
+      alt="avatar"
+    />
   );
   const capturedTableArguments = mockDataTable.mock.calls[0][0];
-  expect(capturedTableArguments.description).toEqual("Overiew of GitHub repos");
-  expect(capturedTableArguments.title).toEqual("Repositories");
-  expect(capturedTableArguments.headers.length).toEqual(5);
+  expect(capturedTableArguments.description).toEqual(
+    "Overiew of GitHub followers"
+  );
+  expect(capturedTableArguments.title).toEqual("Followers");
+  expect(capturedTableArguments.headers.length).toEqual(2);
 });

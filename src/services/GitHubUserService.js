@@ -1,6 +1,6 @@
 const accountName = "Arlabunakty";
 
-export const fetchUser = async () => {
+export async function fetchUser() {
   const response = await fetch(`https://api.github.com/users/${accountName}`);
   const user = await response.json();
 
@@ -8,15 +8,23 @@ export const fetchUser = async () => {
   const events = await responseEvents.json();
   user.received_events = events.length;
 
-  const responseRepositories = await fetch(user.repos_url);
-  const repositories = await responseRepositories.json();
-  user.repos = repositories;
-  user.repos.forEach((repo) => (repo.owner.name = user.name));
-  user.forks = repositories
-    .map((r) => r.forks_count)
-    .reduce(function (previousValue, currentValue) {
-      return previousValue + currentValue;
-    }, 0);
-
   return user;
-};
+}
+
+export async function fetchUserRepositories(user) {
+  const response = await fetch(user.repos_url);
+  const repositories = await response.json();
+  return repositories;
+}
+
+export async function fetchUserFollowers(user) {
+  const response = await fetch(user.followers_url);
+  const followers = await response.json();
+  return followers;
+}
+
+export async function fetchUserSubscriptions(user) {
+  const response = await fetch(user.subscriptions_url);
+  const subscriptions = await response.json();
+  return subscriptions;
+}

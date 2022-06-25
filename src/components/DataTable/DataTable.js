@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./DataTable.css";
 
-const DataTable = ({ title, description, headers, data }) => {
+const DataTable = ({ title, description, headers, data, testid }) => {
   const [search, setSearch] = useState("");
   const originalData = data;
   const searchableHeaders = headers.filter((header) => header.searchable);
@@ -15,7 +15,7 @@ const DataTable = ({ title, description, headers, data }) => {
     );
   }
   return (
-    <div className="table-container">
+    <div className="table-container" data-testid={testid}>
       <table className="table">
         <thead className="thead">
           <tr className="tr">

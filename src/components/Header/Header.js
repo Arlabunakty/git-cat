@@ -2,11 +2,11 @@ import React from "react";
 import "./Header.css";
 import octocatLogo from "./../../assets/octocat.png";
 
-const Header = ({ followers, forks, received_events }) => {
+const Header = ({ followers, public_repos, received_events }) => {
   const rows = [
     { name: "Received events", value: received_events },
     { name: "Followers", value: followers },
-    { name: "Forks", value: forks },
+    { name: "Repositories", value: public_repos },
   ];
   return (
     <div className="header">

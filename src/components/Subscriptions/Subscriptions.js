@@ -2,7 +2,7 @@ import React from "react";
 import * as userService from "./../../services/GitHubUserService";
 import DataTable from "./../DataTable/DataTable";
 import DataTableSource from "./../DataTableSource/DataTableSource";
-import "./ReposList.css";
+import "./Subscriptions.css";
 
 const headers = [
   {
@@ -10,8 +10,8 @@ const headers = [
     propertyName: "ownerCell",
   },
   {
-    name: "Name",
-    propertyName: "name",
+    name: "Full name",
+    propertyName: "full_name",
     searchable: true,
   },
   {
@@ -23,43 +23,47 @@ const headers = [
     propertyName: "forks",
   },
   {
-    name: "Private",
-    propertyName: "private",
+    name: "Issues",
+    propertyName: "open_issues_count",
+  },
+  {
+    name: "Language",
+    propertyName: "language",
   },
 ];
 
-const ReposList = ({ user }) => {
+const Subscriptions = ({ user }) => {
   function dataTransformFunction(data) {
     data.forEach(
-      (repo) =>
-        (repo.ownerCell = (
-          <div className="owner-cell">
+      (subscription) =>
+        (subscription.ownerCell = (
+          <div className="subscription-owner-cell">
             <img
-              className="owner-avatar"
-              src={repo.owner.avatar_url}
+              className="subscription-owner-avatar"
+              src={subscription.owner.avatar_url}
               alt="avatar"
             />
-            <div className="owner-celltext">
-              <span>{user.name}</span>
-              <span>{repo.owner.login}</span>
+            <div className="subscription-owner-text">
+              <span>{subscription.owner.login}</span>
             </div>
           </div>
         ))
     );
   }
+
   return (
     <DataTableSource
-      dataSourceFunction={() => userService.fetchUserRepositories(user)}
+      dataSourceFunction={() => userService.fetchUserSubscriptions(user)}
       dataTransformFunction={dataTransformFunction}
     >
       <DataTable
-        testid="repositories-table-container"
-        title="Repositories"
-        description="Overiew of GitHub repos"
+        testid="subscriptions-table-container"
+        title="Subscriptions"
+        description="Overiew of GitHub subscriptions"
         headers={headers}
       />
     </DataTableSource>
   );
 };
 
-export default ReposList;
+export default Subscriptions;

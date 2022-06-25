@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import React from "react";
 import { BrowserRouter, Router } from "react-router-dom";
+import { act } from "react-dom/test-utils";
 import { names, default as routes } from "./../../Routes";
 import { createMemoryHistory } from "history";
 import SideMenu from "./SideMenu";
@@ -14,7 +14,9 @@ test.each(routes)("menu item click affects path", async (route) => {
     </Router>
   );
 
-  await userEvent.click(screen.getByTestId(route.name));
+  act(() => {
+    screen.getByTestId(route.name).click();
+  });
 
   expect(history.location.pathname).toBe(route.path);
 });
@@ -22,7 +24,9 @@ test.each(routes)("menu item click affects path", async (route) => {
 test.each(routes)("menu item click active it", async (route) => {
   const { container } = render(<SideMenu />, { wrapper: BrowserRouter });
 
-  await userEvent.click(screen.getByTestId(route.name));
+  act(() => {
+    screen.getByTestId(route.name).click();
+  });
 
   const activeLinkElements = container.getElementsByClassName("active");
   expect(activeLinkElements.length).toBe(1);

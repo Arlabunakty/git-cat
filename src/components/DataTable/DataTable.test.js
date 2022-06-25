@@ -1,6 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen, fireEvent } from "@testing-library/react";
 import DataTable from "./DataTable";
 
 const headers = [
@@ -116,7 +115,8 @@ it.each([
   );
   const search = await screen.findByTestId("search-input");
 
-  await userEvent.type(search, test.search);
+  fireEvent.change(search, { target: { value: test.search } });
+
   expect(container.querySelectorAll(".table-row").length).toEqual(
     test.expectedNumOfRows
   );

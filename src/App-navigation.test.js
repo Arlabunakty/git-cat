@@ -1,27 +1,25 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import React from "react";
+import { render, screen } from "@testing-library/react";
 import { BrowserRouter, Router } from "react-router-dom";
+import { act } from "react-dom/test-utils";
 import { names } from "./Routes";
 import { createMemoryHistory } from "history";
+
+jest.mock("./services/GitHubUserService");
+import { mock } from "./services/__mocks__/GitHubUserService";
+
+beforeEach(() => {
+  mock();
+});
+
 import App from "./App";
 
-const mockfetchUser = jest.fn();
-
-jest.mock("./services/GitHubUserService", () => ({
-  __esModule: true,
-  fetchUser: () => mockfetchUser(),
-}));
-
-function mockUser() {
-  mockfetchUser.mockImplementation(() => Promise.resolve({}));
-}
-
 it("defaults to Repositories menu element and Repository List Component", async () => {
-  mockUser();
-  const { container } = render(<App />, { wrapper: BrowserRouter });
+  const { container } = await act(async () =>
+    render(<App />, { wrapper: BrowserRouter })
+  );
 
-  await screen.findByTestId("main");
+  await screen.findByTestId("repositories-table-container");
 
   const activeLinkElements = container.getElementsByClassName("active");
   expect(activeLinkElements.length).toBe(1);
@@ -35,19 +33,25 @@ it("defaults to Repositories menu element and Repository List Component", async 
 it.each([
   {
     menuElement: names.followers,
-    expectedTextOnTheRight: "FollowersList Component",
+    expectedTextOnTheRight: "Followers",
+    dataTestId: "followers-table-container",
   },
   {
     menuElement: names.subscriptions,
-    expectedTextOnTheRight: "Subscriptions Component",
+    expectedTextOnTheRight: "Subscriptions",
+    dataTestId: "subscriptions-table-container",
   },
-  { menuElement: names.about, expectedTextOnTheRight: "About Component" },
+  {
+    menuElement: names.about,
+    expectedTextOnTheRight: "About Component",
+    dataTestId: "about",
+  },
 ])("clicks on the menu item and related component appears", async (test) => {
-  mockUser();
-  const { container } = render(<App />, { wrapper: BrowserRouter });
-  await screen.findByTestId("main");
+  const { container } = await act(async () =>
+    render(<App />, { wrapper: BrowserRouter })
+  );
 
-  await userEvent.click(await screen.getByTestId(test.menuElement));
+  await act(async () => screen.getByTestId(test.menuElement).click());
 
   const activeLinkElements = container.getElementsByClassName("active");
   expect(activeLinkElements.length).toBe(1);
@@ -55,11 +59,10 @@ it.each([
 
   const rightElements = container.getElementsByClassName("content");
   expect(rightElements.length).toBe(1);
-  expect(rightElements[0].textContent).toBe(test.expectedTextOnTheRight);
+  expect(rightElements[0].textContent).toContain(test.expectedTextOnTheRight);
 });
 
 it("opens non existing page with error", async () => {
-  mockUser();
   const history = createMemoryHistory();
   history.push("/non-existing-path");
 
