@@ -121,3 +121,15 @@ it.each([
     test.expectedNumOfRows
   );
 });
+
+it("renders Loading", async () => {
+  const { container } = render(<DataTable isLoading={true} />);
+
+  expect(container.textContent).toEqual("Fetching...");
+});
+
+it("renders Error", async () => {
+  const { container } = render(<DataTable errorMessage={"error.message"} />);
+
+  expect(container.textContent).toEqual("error.message");
+});

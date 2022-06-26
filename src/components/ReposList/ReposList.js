@@ -1,7 +1,7 @@
 import React from "react";
 import * as userService from "./../../services/GitHubUserService";
 import DataTable from "./../DataTable/DataTable";
-import DataTableSource from "./../DataTableSource/DataTableSource";
+import useAsyncFunction from "./../../useAsyncFunction";
 import "./ReposList.css";
 
 const headers = [
@@ -29,7 +29,7 @@ const headers = [
 ];
 
 const ReposList = ({ user }) => {
-  function dataTransformFunction(data) {
+  function addOwnerComponentAsProperty(data) {
     data.forEach(
       (repo) =>
         (repo.ownerCell = (
@@ -47,18 +47,22 @@ const ReposList = ({ user }) => {
         ))
     );
   }
+
+  const result = useAsyncFunction(() =>
+    userService.fetchUserRepositories(user).then((data) => {
+      addOwnerComponentAsProperty(data);
+      return data;
+    })
+  );
+
   return (
-    <DataTableSource
-      dataSourceFunction={() => userService.fetchUserRepositories(user)}
-      dataTransformFunction={dataTransformFunction}
-    >
-      <DataTable
-        testid="repositories-table-container"
-        title="Repositories"
-        description="Overiew of GitHub repos"
-        headers={headers}
-      />
-    </DataTableSource>
+    <DataTable
+      testid="repositories-table-container"
+      title="Repositories"
+      description="Overiew of GitHub repos"
+      headers={headers}
+      {...result}
+    />
   );
 };
 

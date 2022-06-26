@@ -1,8 +1,8 @@
 import React from "react";
 import * as userService from "./../../services/GitHubUserService";
 import DataTable from "./../DataTable/DataTable";
-import DataTableSource from "./../DataTableSource/DataTableSource";
 import "./FollowersList.css";
+import useAsyncFunction from "./../../useAsyncFunction";
 
 const headers = [
   {
@@ -17,7 +17,7 @@ const headers = [
 ];
 
 const FollowersList = ({ user }) => {
-  function dataTransformFunction(data) {
+  function addAvatarComponentAsProperty(data) {
     data.forEach(
       (follower) =>
         (follower.avatar = (
@@ -30,18 +30,21 @@ const FollowersList = ({ user }) => {
     );
   }
 
+  const result = useAsyncFunction(() =>
+    userService.fetchUserFollowers(user).then((data) => {
+      addAvatarComponentAsProperty(data);
+      return data;
+    })
+  );
+
   return (
-    <DataTableSource
-      dataSourceFunction={() => userService.fetchUserFollowers(user)}
-      dataTransformFunction={dataTransformFunction}
-    >
-      <DataTable
-        testid="followers-table-container"
-        title="Followers"
-        description="Overiew of GitHub followers"
-        headers={headers}
-      />
-    </DataTableSource>
+    <DataTable
+      testid="followers-table-container"
+      title="Followers"
+      description="Overiew of GitHub followers"
+      headers={headers}
+      {...result}
+    />
   );
 };
 

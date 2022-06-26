@@ -1,7 +1,21 @@
 import React, { useState } from "react";
 import "./DataTable.css";
 
-const DataTable = ({ title, description, headers, data, testid }) => {
+const DataTable = ({
+  title,
+  description,
+  headers,
+  data,
+  testid,
+  isLoading,
+  errorMessage,
+}) => {
+  if (isLoading) {
+    return <p>Fetching...</p>;
+  }
+  if (errorMessage != null) {
+    return <p>{errorMessage}</p>;
+  }
   const [search, setSearch] = useState("");
   const originalData = data;
   const searchableHeaders = headers.filter((header) => header.searchable);
