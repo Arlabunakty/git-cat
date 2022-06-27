@@ -8,7 +8,6 @@ const useAsyncFunction = (asyncFunction) => {
   useEffect(() => {
     const init = async () => {
       try {
-        setErrorMessage(null);
         const result = await asyncFunction();
         setData(result);
       } catch (e) {
