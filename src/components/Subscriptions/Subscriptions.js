@@ -2,12 +2,15 @@ import React from "react";
 import * as userService from "./../../services/GitHubUserService";
 import DataTable from "./../DataTable/DataTable";
 import useAsyncFunction from "./../../useAsyncFunction";
-import "./Subscriptions.css";
 
 const headers = [
   {
     name: "Owner",
-    propertyName: "ownerCell",
+    avatar: {
+      url: "$.owner.avatar_url",
+      name: "$.owner.login",
+      columnStyle: true,
+    },
   },
   {
     name: "Full name",
@@ -33,29 +36,8 @@ const headers = [
 ];
 
 const Subscriptions = ({ user }) => {
-  function addOwnerComponentAsProperty(data) {
-    data.forEach(
-      (subscription) =>
-        (subscription.ownerCell = (
-          <div className="subscription-owner-cell">
-            <img
-              className="subscription-owner-avatar"
-              src={subscription.owner.avatar_url}
-              alt="avatar"
-            />
-            <div className="subscription-owner-text">
-              <span>{subscription.owner.login}</span>
-            </div>
-          </div>
-        ))
-    );
-  }
-
   const result = useAsyncFunction(() =>
-    userService.fetchUserSubscriptions(user).then((data) => {
-      addOwnerComponentAsProperty(data);
-      return data;
-    })
+    userService.fetchUserSubscriptions(user)
   );
 
   return (

@@ -1,7 +1,7 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { user, subscriptions_raw } from "./../../__test__/GitHubUser";
+import { user } from "./../../__test__/GitHubUser";
 
 jest.mock("./../../services/GitHubUserService");
 import {
@@ -27,23 +27,11 @@ test("has custom rendered first column", async () => {
   expect(mockDataTable).toBeCalledTimes(2);
   expect(mockFetchUserSubscriptions).toBeCalledTimes(1);
   expect(mockFetchUserSubscriptions).toBeCalledWith(user);
-  const data = [subscriptions_raw[0]];
-  expect(data[0].ownerCell).toEqual(
-    <div className="subscription-owner-cell">
-      <img
-        className="subscription-owner-avatar"
-        src="https://avatars.githubusercontent.com/u/997114?v=4"
-        alt="avatar"
-      />
-      <div className="subscription-owner-text">
-        <span>jaliss</span>
-      </div>
-    </div>
-  );
   const capturedTableArguments = mockDataTable.mock.calls[1][0];
   expect(capturedTableArguments.description).toEqual(
     "Overiew of GitHub subscriptions"
   );
   expect(capturedTableArguments.title).toEqual("Subscriptions");
   expect(capturedTableArguments.headers.length).toEqual(6);
+  expect(capturedTableArguments.headers[0].avatar).toBeDefined();
 });

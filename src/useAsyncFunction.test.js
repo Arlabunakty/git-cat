@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import useAsyncFunction from "./useAsyncFunction";
 import { act } from "react-dom/test-utils";
 
-var result;
+let result;
 
 const TestComponent = ({ hook }) => {
   result = hook();
