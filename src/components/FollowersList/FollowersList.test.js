@@ -13,16 +13,6 @@ beforeEach(() => {
   mock();
 });
 
-// const mockDataTableSource = jest.fn();
-// jest.mock("./../DataTableSource/DataTableSource", () => (props) => {
-//   mockDataTableSource(props);
-//   return (
-//     <mock-DataTableSourceComponent>
-//       {props.children}
-//     </mock-DataTableSourceComponent>
-//   );
-// });
-
 const mockDataTable = jest.fn();
 jest.mock("./../DataTable/DataTable", () => (props) => {
   mockDataTable(props);
