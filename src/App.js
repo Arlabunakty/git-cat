@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Main from "./components/Main/Main";
 import ReposList from "./components/ReposList/ReposList";
-import FollowersList from "./components/FollowersList";
-import Subscriptions from "./components/Subscriptions";
+import FollowersList from "./components/FollowersList/FollowersList";
+import Subscriptions from "./components/Subscriptions/Subscriptions";
 import About from "./components/About";
 import NoPage from "./components/NoPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -33,10 +33,10 @@ function App() {
   const routes = [
     {
       path: pathes.repositories,
-      element: <ReposList repos={data.user.repos || []} />,
+      element: <ReposList {...data} />,
     },
-    { path: pathes.followers, element: <FollowersList /> },
-    { path: pathes.subscriptions, element: <Subscriptions /> },
+    { path: pathes.followers, element: <FollowersList {...data} /> },
+    { path: pathes.subscriptions, element: <Subscriptions {...data} /> },
     { path: pathes.about, element: <About /> },
     { path: "*", element: <NoPage /> },
   ];

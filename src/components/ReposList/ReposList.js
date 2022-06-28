@@ -1,54 +1,48 @@
 import React from "react";
+import * as userService from "./../../services/GitHubUserService";
 import DataTable from "./../DataTable/DataTable";
-import "./ReposList.css";
+import useAsyncFunction from "./../../useAsyncFunction";
 
-const headers = [
-  {
-    name: "Owner",
-    propertyName: "ownerCell",
-  },
-  {
-    name: "Name",
-    propertyName: "name",
-    searchable: true,
-  },
-  {
-    name: "Description",
-    propertyName: "description",
-  },
-  {
-    name: "Forks",
-    propertyName: "forks",
-  },
-  {
-    name: "Private",
-    propertyName: "private",
-  },
-];
+const ReposList = ({ user }) => {
+  const headers = [
+    {
+      name: "Owner",
+      avatar: {
+        url: "$.owner.avatar_url",
+        name: user.name,
+        description: "$.owner.login",
+      },
+    },
+    {
+      name: "Name",
+      propertyName: "name",
+      searchable: true,
+    },
+    {
+      name: "Description",
+      propertyName: "description",
+    },
+    {
+      name: "Forks",
+      propertyName: "forks",
+    },
+    {
+      name: "Private",
+      propertyName: "private",
+    },
+  ];
 
-const ReposList = ({ repos }) => {
-  repos.forEach(
-    (repo) =>
-      (repo.ownerCell = (
-        <div className="owner-cell">
-          <img
-            className="owner-avatar"
-            src={repo.owner.avatar_url}
-            alt="avatar"
-          />
-          <div className="owner-celltext">
-            <span>{repo.owner.name}</span>
-            <span>{repo.owner.login}</span>
-          </div>
-        </div>
-      ))
+  const result = useAsyncFunction(() =>
+    userService.fetchUserRepositories(user)
   );
+
   return (
     <DataTable
+      testid="repositories-table-container"
       title="Repositories"
       description="Overiew of GitHub repos"
       headers={headers}
-      data={repos}
+      {...result}
     />
   );
 };

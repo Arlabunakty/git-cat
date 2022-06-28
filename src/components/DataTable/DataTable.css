@@ -107,3 +107,41 @@ table .td:nth-last-child(1) {
 .tr {
   width: 100%;
 }
+
+/* Avatar */
+
+/* .avatar-cell > * {
+  flex: 1;
+} */
+
+.avatar-cell-column {
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-cell-row {
+  column-gap: 15px;
+  flex-flow: row wrap;
+  justify-content: center;
+  /* justify-content: space-around; */
+}
+
+.avatar-cell {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.avatar-img {
+  width: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar-text {
+  display: flex;
+  flex-flow: column wrap;
+  text-align: left;
+}

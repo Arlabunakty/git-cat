@@ -6,7 +6,7 @@ import { user } from "./../../__test__/GitHubUser";
 jest.mock("./../../services/GitHubUserService");
 import {
   mock,
-  mockFetchUserRepositories,
+  mockFetchUserSubscriptions,
 } from "./../../services/__mocks__/GitHubUserService";
 
 beforeEach(() => {
@@ -19,17 +19,19 @@ jest.mock("./../DataTable/DataTable", () => (props) => {
   return <mock-DataTableComponent />;
 });
 
-import ReposList from "./ReposList";
+import Subscriptions from "./Subscriptions";
 
 test("has custom rendered first column", async () => {
-  await act(async () => render(<ReposList user={user} />));
+  await act(async () => render(<Subscriptions user={user} />));
 
   expect(mockDataTable).toBeCalledTimes(2);
-  expect(mockFetchUserRepositories).toBeCalledTimes(1);
-  expect(mockFetchUserRepositories).toBeCalledWith(user);
+  expect(mockFetchUserSubscriptions).toBeCalledTimes(1);
+  expect(mockFetchUserSubscriptions).toBeCalledWith(user);
   const capturedTableArguments = mockDataTable.mock.calls[1][0];
-  expect(capturedTableArguments.description).toEqual("Overiew of GitHub repos");
-  expect(capturedTableArguments.title).toEqual("Repositories");
-  expect(capturedTableArguments.headers.length).toEqual(5);
+  expect(capturedTableArguments.description).toEqual(
+    "Overiew of GitHub subscriptions"
+  );
+  expect(capturedTableArguments.title).toEqual("Subscriptions");
+  expect(capturedTableArguments.headers.length).toEqual(6);
   expect(capturedTableArguments.headers[0].avatar).toBeDefined();
 });

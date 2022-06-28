@@ -21,11 +21,7 @@ const Main = ({ isFetching, user }) => {
         <div className="footer">GL JS 2022</div>
       </div>
       <div className="right">
-        <Header
-          followers={user.followers}
-          forks={user.forks}
-          received_events={user.received_events}
-        />
+        <Header {...user} />
         <div className="content">
           <Content />
         </div>

@@ -1,7 +1,22 @@
 import React, { useState } from "react";
 import "./DataTable.css";
+import JsonPath from "jsonpath";
 
-const DataTable = ({ title, description, headers, data }) => {
+const DataTable = ({
+  title,
+  description,
+  headers,
+  data,
+  testid,
+  isLoading,
+  errorMessage,
+}) => {
+  if (isLoading) {
+    return <p>Fetching...</p>;
+  }
+  if (errorMessage != null) {
+    return <p>{errorMessage}</p>;
+  }
   const [search, setSearch] = useState("");
   const originalData = data;
   const searchableHeaders = headers.filter((header) => header.searchable);
@@ -15,7 +30,7 @@ const DataTable = ({ title, description, headers, data }) => {
     );
   }
   return (
-    <div className="table-container">
+    <div className="table-container" data-testid={testid}>
       <table className="table">
         <thead className="thead">
           <tr className="tr">
@@ -57,12 +72,43 @@ const DataTable = ({ title, description, headers, data }) => {
 
 function renderCell(header, j, row) {
   const value = row[header.propertyName];
+  const avatarAndTextAlign =
+    header.avatar && header.avatar.columnStyle
+      ? "avatar-cell-column"
+      : "avatar-cell-row";
   return (
     <td className="td" key={j}>
-      {typeof value === "boolean" ? "" + value : value}
+      {header.avatar ? (
+        <div className={"avatar-cell " + avatarAndTextAlign}>
+          <img
+            className="avatar-img"
+            src={JsonPath.query(row, header.avatar.url)}
+            alt="avatar"
+          />
+          <div className="avatar-text">
+            <span>{jsonPathOrConstant(row, header.avatar.name)}</span>
+            {header.avatar.description && (
+              <span>{JsonPath.query(row, header.avatar.description)}</span>
+            )}
+          </div>
+        </div>
+      ) : typeof value === "boolean" ? (
+        "" + value
+      ) : (
+        value
+      )}
     </td>
   );
 }
+
+function jsonPathOrConstant(row, candidateJsonPath) {
+  try {
+    return JsonPath.query(row, candidateJsonPath);
+  } catch (e) {
+    return candidateJsonPath;
+  }
+}
+
 function renderRow(row, i, headers) {
   return (
     <tr className="tr table-row" key={i}>

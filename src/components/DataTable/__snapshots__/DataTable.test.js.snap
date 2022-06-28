@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders avatar column 1`] = `
+<div
+  className="table-container"
+>
+  <table
+    className="table"
+  >
+    <thead
+      className="thead"
+    >
+      <tr
+        className="tr"
+      >
+        <th
+          className="th first-row"
+          colSpan={1}
+          scope="col"
+        >
+          <div
+            className="table-header"
+          >
+            <div
+              className="left-header"
+            >
+              <span
+                className="table-name"
+                data-testid="table-name"
+              />
+              <span
+                data-testid="table-description"
+              />
+            </div>
+            <div
+              className="right-header"
+            >
+              <input
+                className="icon-rtl"
+                data-testid="search-input"
+                onChange={[Function]}
+                placeholder="Search"
+                type="text"
+              />
+            </div>
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th
+          className="th column-name"
+          scope="col"
+        >
+          Owner
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="tbody"
+    >
+      <tr
+        className="tr table-row"
+      >
+        <td
+          className="td"
+        >
+          <div
+            className="avatar-cell avatar-cell-row"
+          >
+            <img
+              alt="avatar"
+              className="avatar-img"
+              src={Array []}
+            />
+            <div
+              className="avatar-text"
+            >
+              <span>
+                Hard coded name
+              </span>
+              <span />
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

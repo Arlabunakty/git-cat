@@ -1,16 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App";
-import waitForExpect from "wait-for-expect";
+import { act } from "react-dom/test-utils";
 import { user } from "./__test__/GitHubUser";
 
-const mockfetchUser = jest.fn();
-
-jest.mock("./services/GitHubUserService", () => ({
-  __esModule: true,
-  fetchUser: () => mockfetchUser(),
-}));
+jest.mock("./services/GitHubUserService");
+import { mock, mockReject } from "./services/__mocks__/GitHubUserService";
 
 const mockMain = jest.fn();
 
@@ -23,48 +18,45 @@ jest.mock("./components/Main/Main", () => (props) => {
   );
 });
 
-it("when userService.fetchUser fails Promise.reject then show empty user", async () => {
-  mockfetchUser.mockImplementation(() => Promise.reject("reject"));
+import App from "./App";
 
-  render(<App />, { wrapper: BrowserRouter });
+it("when userService.fetchUser fails Promise.reject then show empty user", async () => {
+  mockReject();
+  await act(async () => render(<App />, { wrapper: BrowserRouter }));
 
   await screen.findByTestId("mockMain");
 
-  await waitForExpect(() => {
-    expect(mockMain).toHaveBeenNthCalledWith(
-      1,
-      expect.objectContaining({ user: {}, isFetching: true })
-    );
-    expect(mockMain).toHaveBeenNthCalledWith(
-      2,
-      expect.objectContaining({ user: {}, isFetching: true })
-    );
-    expect(mockMain).toHaveBeenNthCalledWith(
-      3,
-      expect.objectContaining({ user: {}, isFetching: false })
-    );
-  });
+  expect(mockMain).toHaveBeenNthCalledWith(
+    1,
+    expect.objectContaining({ user: {}, isFetching: true })
+  );
+  expect(mockMain).toHaveBeenNthCalledWith(
+    2,
+    expect.objectContaining({ user: {}, isFetching: true })
+  );
+  expect(mockMain).toHaveBeenNthCalledWith(
+    3,
+    expect.objectContaining({ user: {}, isFetching: false })
+  );
 });
 
 it("when userService.fetchUser successed, then pass user to Main component", async () => {
-  mockfetchUser.mockImplementation(() => Promise.resolve(user));
+  mock();
 
-  render(<App />, { wrapper: BrowserRouter });
+  await act(async () => render(<App />, { wrapper: BrowserRouter }));
 
   await screen.findByTestId("mockMain");
 
-  await waitForExpect(() => {
-    expect(mockMain).toHaveBeenNthCalledWith(
-      1,
-      expect.objectContaining({ user: {}, isFetching: true })
-    );
-    expect(mockMain).toHaveBeenNthCalledWith(
-      2,
-      expect.objectContaining({ user: {}, isFetching: true })
-    );
-    expect(mockMain).toHaveBeenNthCalledWith(
-      3,
-      expect.objectContaining({ user: user, isFetching: false })
-    );
-  });
+  expect(mockMain).toHaveBeenNthCalledWith(
+    1,
+    expect.objectContaining({ user: {}, isFetching: true })
+  );
+  expect(mockMain).toHaveBeenNthCalledWith(
+    2,
+    expect.objectContaining({ user: {}, isFetching: true })
+  );
+  expect(mockMain).toHaveBeenNthCalledWith(
+    3,
+    expect.objectContaining({ user: user, isFetching: false })
+  );
 });

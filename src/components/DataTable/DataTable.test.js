@@ -1,7 +1,7 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen, fireEvent } from "@testing-library/react";
 import DataTable from "./DataTable";
+import renderer from "react-test-renderer";
 
 const headers = [
   { name: "Col1", propertyName: "col1", searchable: true },
@@ -116,8 +116,43 @@ it.each([
   );
   const search = await screen.findByTestId("search-input");
 
-  await userEvent.type(search, test.search);
+  fireEvent.change(search, { target: { value: test.search } });
+
   expect(container.querySelectorAll(".table-row").length).toEqual(
     test.expectedNumOfRows
   );
+});
+
+it("renders Loading", async () => {
+  const { container } = render(<DataTable isLoading={true} />);
+
+  expect(container.textContent).toEqual("Fetching...");
+});
+
+it("renders Error", async () => {
+  const { container } = render(<DataTable errorMessage={"error.message"} />);
+
+  expect(container.textContent).toEqual("error.message");
+});
+
+it("renders avatar column", async () => {
+  const tree = renderer
+    .create(
+      <DataTable
+        headers={[
+          {
+            name: "Owner",
+            avatar: {
+              url: "$.owner.avatar_url",
+              name: "Hard coded name",
+              description: "$.owner.login",
+            },
+          },
+        ]}
+        data={[{ owner: { url: "avatar_url", description: "login" } }]}
+      />
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
 });
