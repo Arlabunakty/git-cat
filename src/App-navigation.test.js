@@ -1,11 +1,10 @@
+jest.mock("./services/GitHubUserService");
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter, Router } from "react-router-dom";
 import { act } from "react-dom/test-utils";
 import { names } from "./Routes";
 import { createMemoryHistory } from "history";
-
-jest.mock("./services/GitHubUserService");
 import { mock } from "./services/__mocks__/GitHubUserService";
 
 beforeEach(() => {
@@ -43,7 +42,7 @@ it.each([
   },
   {
     menuElement: names.about,
-    expectedTextOnTheRight: "About Component",
+    expectedTextOnTheRight: "ACCOUNT DETAILS",
     dataTestId: "about",
   },
 ])("clicks on the menu item and related component appears", async (test) => {

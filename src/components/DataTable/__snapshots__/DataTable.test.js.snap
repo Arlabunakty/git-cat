@@ -15,7 +15,7 @@ exports[`renders avatar column 1`] = `
       >
         <th
           className="th first-row"
-          colSpan={1}
+          colSpan={2}
           scope="col"
         >
           <div
@@ -53,6 +53,12 @@ exports[`renders avatar column 1`] = `
         >
           Owner
         </th>
+        <th
+          className="th column-name"
+          scope="col"
+        >
+          Owner column
+        </th>
       </tr>
     </thead>
     <tbody
@@ -66,6 +72,27 @@ exports[`renders avatar column 1`] = `
         >
           <div
             className="avatar-cell avatar-cell-row"
+          >
+            <img
+              alt="avatar"
+              className="avatar-img"
+              src={Array []}
+            />
+            <div
+              className="avatar-text"
+            >
+              <span>
+                Hard coded name
+              </span>
+              <span />
+            </div>
+          </div>
+        </td>
+        <td
+          className="td"
+        >
+          <div
+            className="avatar-cell avatar-cell-column"
           >
             <img
               alt="avatar"

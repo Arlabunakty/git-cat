@@ -148,6 +148,15 @@ it("renders avatar column", async () => {
               description: "$.owner.login",
             },
           },
+          {
+            name: "Owner column",
+            avatar: {
+              url: "$.owner.avatar_url",
+              name: "Hard coded name",
+              description: "$.owner.login",
+              columnStyle: true,
+            },
+          },
         ]}
         data={[{ owner: { url: "avatar_url", description: "login" } }]}
       />

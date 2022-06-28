@@ -3,22 +3,22 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
 import { user } from "./__test__/GitHubUser";
+import { mock, mockReject } from "./services/__mocks__/GitHubUserService";
+import App from "./App";
 
 jest.mock("./services/GitHubUserService");
-import { mock, mockReject } from "./services/__mocks__/GitHubUserService";
-
 const mockMain = jest.fn();
+jest.mock("./components/Main/Main", () => (props) => mockMain(props));
 
-jest.mock("./components/Main/Main", () => (props) => {
-  mockMain(props);
-  return props.user != {} ? (
-    <mock-MainComponent data-testid="mockMain" />
-  ) : (
-    <mock-MainComponent data-testid="noUser" />
+beforeEach(() => {
+  mockMain.mockImplementation((props) =>
+    props.user != {} ? (
+      <mock-MainComponent data-testid="mockMain" />
+    ) : (
+      <mock-MainComponent data-testid="noUser" />
+    )
   );
 });
-
-import App from "./App";
 
 it("when userService.fetchUser fails Promise.reject then show empty user", async () => {
   mockReject();

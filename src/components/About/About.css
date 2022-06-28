@@ -1,0 +1,24 @@
+.about-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  padding: 2em 2em;
+  margin: 0;
+  list-style: none;
+  column-gap: 3em;
+}
+
+.about-avatar {
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.about-text {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.account-details {
+  color: #4c56c0;
+}
