@@ -2,24 +2,20 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { user } from "./../../__test__/GitHubUser";
-
-jest.mock("./../../services/GitHubUserService");
 import {
   mock,
   mockFetchUserSubscriptions,
 } from "./../../services/__mocks__/GitHubUserService";
+import Subscriptions from "./Subscriptions";
+
+jest.mock("./../../services/GitHubUserService");
+const mockDataTable = jest.fn();
+jest.mock("./../DataTable/DataTable", () => (props) => mockDataTable(props));
 
 beforeEach(() => {
   mock();
+  mockDataTable.mockImplementation((props) => <mock-DataTableComponent />);
 });
-
-const mockDataTable = jest.fn();
-jest.mock("./../DataTable/DataTable", () => (props) => {
-  mockDataTable(props);
-  return <mock-DataTableComponent />;
-});
-
-import Subscriptions from "./Subscriptions";
 
 test("has custom rendered first column", async () => {
   await act(async () => render(<Subscriptions user={user} />));

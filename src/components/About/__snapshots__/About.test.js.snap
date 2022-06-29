@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`display user statistics 1`] = `
+<div
+  className="about-container"
+>
+  <img
+    alt="avatar"
+    className="about-avatar"
+    src="https://avatars.githubusercontent.com/u/3165275?v=4"
+  />
+  <div
+    className="about-text"
+  >
+    <h1>
+      Denys Durniev
+    </h1>
+    <h3
+      className="account-details"
+    >
+      ACCOUNT DETAILS
+    </h3>
+    <span>
+      <b>
+        bio
+        : 
+      </b>
+    </span>
+    <span>
+      <b>
+        country
+        : 
+      </b>
+      Ukraine
+    </span>
+    <span>
+      <b>
+        company
+        : 
+      </b>
+    </span>
+    <span>
+      <b>
+        email
+        : 
+      </b>
+    </span>
+    <span>
+      <b>
+        profile
+        : 
+      </b>
+      <a
+        href="https://github.com/Arlabunakty"
+      >
+        link
+      </a>
+    </span>
+    <span>
+      <b>
+        subscriptions
+        : 
+      </b>
+      <a
+        href="https://api.github.com/users/Arlabunakty/subscriptions"
+      >
+        link
+      </a>
+    </span>
+    <span>
+      <b>
+        received events
+        : 
+      </b>
+      <a
+        href="https://api.github.com/users/Arlabunakty/received_events"
+      >
+        link
+      </a>
+    </span>
+    <span>
+      <b>
+        repos
+        : 
+      </b>
+      <a
+        href="https://api.github.com/users/Arlabunakty/repos"
+      >
+        link
+      </a>
+    </span>
+    <span>
+      <b>
+        followers
+        : 
+      </b>
+      <a
+        href="https://api.github.com/users/Arlabunakty/followers"
+      >
+        link
+      </a>
+    </span>
+  </div>
+</div>
+`;

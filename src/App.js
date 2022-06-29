@@ -4,7 +4,7 @@ import Main from "./components/Main/Main";
 import ReposList from "./components/ReposList/ReposList";
 import FollowersList from "./components/FollowersList/FollowersList";
 import Subscriptions from "./components/Subscriptions/Subscriptions";
-import About from "./components/About";
+import About from "./components/About/About";
 import NoPage from "./components/NoPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -37,7 +37,7 @@ function App() {
     },
     { path: pathes.followers, element: <FollowersList {...data} /> },
     { path: pathes.subscriptions, element: <Subscriptions {...data} /> },
-    { path: pathes.about, element: <About /> },
+    { path: pathes.about, element: <About {...data} /> },
     { path: "*", element: <NoPage /> },
   ];
 

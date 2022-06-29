@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import { BrowserRouter, Router } from "react-router-dom";
 import { act } from "react-dom/test-utils";
-import { names, default as routes } from "./../../Routes";
+import { default as routes } from "./../../Routes";
 import { createMemoryHistory } from "history";
 import SideMenu from "./SideMenu";
 

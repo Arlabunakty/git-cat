@@ -2,24 +2,20 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { user, followers_raw } from "./../../__test__/GitHubUser";
-
-jest.mock("./../../services/GitHubUserService");
 import {
   mock,
   mockFetchUserFollowers,
 } from "./../../services/__mocks__/GitHubUserService";
+import FollowersList from "./FollowersList";
+
+jest.mock("./../../services/GitHubUserService");
+const mockDataTable = jest.fn();
+jest.mock("./../DataTable/DataTable", () => (props) => mockDataTable(props));
 
 beforeEach(() => {
   mock();
+  mockDataTable.mockImplementation(() => <mock-DataTableComponent />);
 });
-
-const mockDataTable = jest.fn();
-jest.mock("./../DataTable/DataTable", () => (props) => {
-  mockDataTable(props);
-  return <mock-DataTableComponent />;
-});
-
-import FollowersList from "./FollowersList";
 
 test("has custom rendered first column", async () => {
   await act(async () => render(<FollowersList user={user} />));

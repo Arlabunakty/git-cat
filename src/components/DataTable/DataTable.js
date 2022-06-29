@@ -82,13 +82,13 @@ function renderCell(header, j, row) {
         <div className={"avatar-cell " + avatarAndTextAlign}>
           <img
             className="avatar-img"
-            src={JsonPath.query(row, header.avatar.url)}
+            src={jsonPathOrConstant(row, header.avatar.url)}
             alt="avatar"
           />
           <div className="avatar-text">
             <span>{jsonPathOrConstant(row, header.avatar.name)}</span>
             {header.avatar.description && (
-              <span>{JsonPath.query(row, header.avatar.description)}</span>
+              <span>{jsonPathOrConstant(row, header.avatar.description)}</span>
             )}
           </div>
         </div>
@@ -103,7 +103,7 @@ function renderCell(header, j, row) {
 
 function jsonPathOrConstant(row, candidateJsonPath) {
   try {
-    return JsonPath.query(row, candidateJsonPath);
+    return JsonPath.query(row, candidateJsonPath, 1)[0];
   } catch (e) {
     return candidateJsonPath;
   }
