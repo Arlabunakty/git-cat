@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "f96ed64a6d556e8f8dd5",
+    "revision": "885cbfbe305ebfbc9bfd",
     "url": "https://arlabunakty.github.io/git-cat/static/css/main.9ef2208f.chunk.css"
   },
   {
-    "revision": "f96ed64a6d556e8f8dd5",
-    "url": "https://arlabunakty.github.io/git-cat/static/js/main.83454f53.chunk.js"
+    "revision": "885cbfbe305ebfbc9bfd",
+    "url": "https://arlabunakty.github.io/git-cat/static/js/main.b3abd7d6.chunk.js"
   },
   {
     "revision": "f6f52b71053dd0bd3aa6",
     "url": "https://arlabunakty.github.io/git-cat/static/js/runtime~main.130d0b28.js"
   },
   {
-    "revision": "4f49cefc085485850aff",
-    "url": "https://arlabunakty.github.io/git-cat/static/js/2.6a3f06f7.chunk.js"
+    "revision": "d4dbdaaf797e1a52502f",
+    "url": "https://arlabunakty.github.io/git-cat/static/js/2.f135487b.chunk.js"
   },
   {
     "revision": "e2aa523fcf964839130f",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "https://arlabunakty.github.io/git-cat/static/media/octocat.8f77f332.png"
   },
   {
-    "revision": "dd1293a9436030099be7207cdeb84d90",
+    "revision": "e0838f4ce863a9b5a74c079ab069a080",
     "url": "https://arlabunakty.github.io/git-cat/index.html"
   }
 ];
