@@ -1,4 +1,3 @@
-jest.mock("./services/GitHubUserService");
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter, Router } from "react-router-dom";
@@ -6,6 +5,8 @@ import { act } from "react-dom/test-utils";
 import { names } from "./Routes";
 import { createMemoryHistory } from "history";
 import { mock } from "./services/__mocks__/GitHubUserService";
+
+jest.mock("./services/GitHubUserService");
 
 beforeEach(() => {
   mock();
