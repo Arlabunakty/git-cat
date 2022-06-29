@@ -158,7 +158,7 @@ it("renders avatar column", async () => {
             },
           },
         ]}
-        data={[{ owner: { url: "avatar_url", description: "login" } }]}
+        data={[{ owner: { avatar_url: "avatar_url", description: "login" } }]}
       />
     )
     .toJSON();

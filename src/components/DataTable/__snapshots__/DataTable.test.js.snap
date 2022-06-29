@@ -76,7 +76,7 @@ exports[`renders avatar column 1`] = `
             <img
               alt="avatar"
               className="avatar-img"
-              src={Array []}
+              src="avatar_url"
             />
             <div
               className="avatar-text"
@@ -97,7 +97,7 @@ exports[`renders avatar column 1`] = `
             <img
               alt="avatar"
               className="avatar-img"
-              src={Array []}
+              src="avatar_url"
             />
             <div
               className="avatar-text"
