@@ -2,6 +2,7 @@ import React from "react";
 import * as userService from "./../../services/GitHubUserService";
 import DataTable from "./../DataTable/DataTable";
 import useAsyncFunction from "./../../useAsyncFunction";
+import useUser from "../../contexts/UserContext";
 
 const headers = [
   {
@@ -35,7 +36,8 @@ const headers = [
   },
 ];
 
-const Subscriptions = ({ user }) => {
+const Subscriptions = () => {
+  const { user } = useUser();
   const result = useAsyncFunction(() =>
     userService.fetchUserSubscriptions(user)
   );

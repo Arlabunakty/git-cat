@@ -3,6 +3,7 @@ import { render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import Main from "./Main";
 import { user } from "./../../__test__/GitHubUser";
+import { mock as mockUseUser } from "../../contexts/__mocks__/UserContext";
 
 const mockUserInfo = jest.fn();
 
@@ -10,15 +11,20 @@ jest.mock("./../UserInfo/UserInfo", () => (props) => {
   mockUserInfo(props);
   return <mock-userInfoComponent />;
 });
+jest.mock("./../../contexts/UserContext");
+
+beforeEach(() => {
+  mockUseUser();
+});
 
 test("When fetch in progress inform user", async () => {
-  const { container } = render(<Main isFetching={true} />);
+  const { container } = render(<Main />);
 
   expect(container.textContent).toEqual("Fetching...");
 });
 
 test("If isFetching=false and user passed, then UserInfo is called with props from user", () => {
-  render(<Main user={user} isFetching={false} />, { wrapper: BrowserRouter });
+  render(<Main />, { wrapper: BrowserRouter });
 
   expect(mockUserInfo).toHaveBeenCalledWith(
     expect.objectContaining({
@@ -30,7 +36,7 @@ test("If isFetching=false and user passed, then UserInfo is called with props fr
 });
 
 it("has copyright in the footer", async () => {
-  const { container } = render(<Main user={user} isFetching={false} />, {
+  const { container } = render(<Main />, {
     wrapper: BrowserRouter,
   });
 

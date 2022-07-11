@@ -7,6 +7,7 @@ import { createMemoryHistory } from "history";
 import { mock } from "./services/__mocks__/GitHubUserService";
 
 jest.mock("./services/GitHubUserService");
+jest.mock("./contexts/UserContext");
 
 beforeEach(() => {
   mock();

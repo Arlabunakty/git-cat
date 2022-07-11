@@ -9,6 +9,7 @@ import App from "./App";
 jest.mock("./services/GitHubUserService");
 const mockMain = jest.fn();
 jest.mock("./components/Main/Main", () => (props) => mockMain(props));
+jest.mock("./contexts/UserContext");
 
 beforeEach(() => {
   mockMain.mockImplementation((props) =>

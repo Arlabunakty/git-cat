@@ -3,6 +3,7 @@ import * as userService from "./../../services/GitHubUserService";
 import DataTable from "./../DataTable/DataTable";
 import "./FollowersList.css";
 import useAsyncFunction from "./../../useAsyncFunction";
+import useUser from "../../contexts/UserContext";
 
 const headers = [
   {
@@ -16,7 +17,8 @@ const headers = [
   },
 ];
 
-const FollowersList = ({ user }) => {
+const FollowersList = () => {
+  const { user } = useUser();
   function addAvatarComponentAsProperty(data) {
     data.forEach(
       (follower) =>

@@ -3,22 +3,25 @@ import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { user } from "./../../__test__/GitHubUser";
 import {
-  mock,
+  mock as mockUserService,
   mockFetchUserSubscriptions,
 } from "./../../services/__mocks__/GitHubUserService";
 import Subscriptions from "./Subscriptions";
+import { mock as mockUseUser } from "../../contexts/__mocks__/UserContext";
 
 jest.mock("./../../services/GitHubUserService");
 const mockDataTable = jest.fn();
 jest.mock("./../DataTable/DataTable", () => (props) => mockDataTable(props));
+jest.mock("./../../contexts/UserContext");
 
 beforeEach(() => {
-  mock();
+  mockUseUser();
+  mockUserService();
   mockDataTable.mockImplementation((props) => <mock-DataTableComponent />);
 });
 
 test("has custom rendered first column", async () => {
-  await act(async () => render(<Subscriptions user={user} />));
+  await act(async () => render(<Subscriptions />));
 
   expect(mockDataTable).toBeCalledTimes(2);
   expect(mockFetchUserSubscriptions).toBeCalledTimes(1);

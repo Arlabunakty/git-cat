@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Main from "./components/Main/Main";
 import ReposList from "./components/ReposList/ReposList";
@@ -9,49 +9,32 @@ import NoPage from "./components/NoPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { pathes } from "./Routes";
-import * as userService from "./services/GitHubUserService";
+import { UserProvider } from "./contexts/UserContext";
 
 library.add(fas);
 
 function App() {
-  const [data, setData] = useState({ user: {}, isFetching: true });
-
-  useEffect(() => {
-    const init = async () => {
-      try {
-        setData({ user: {}, isFetching: true });
-        const user = await userService.fetchUser();
-        setData({ user: user, isFetching: false });
-      } catch (e) {
-        console.log(e);
-        setData({ user: {}, isFetching: false });
-      }
-    };
-    init();
-  }, []);
-
   const routes = [
     {
       path: pathes.repositories,
-      element: <ReposList {...data} />,
+      element: <ReposList />,
     },
-    { path: pathes.followers, element: <FollowersList {...data} /> },
-    { path: pathes.subscriptions, element: <Subscriptions {...data} /> },
-    { path: pathes.about, element: <About {...data} /> },
+    { path: pathes.followers, element: <FollowersList /> },
+    { path: pathes.subscriptions, element: <Subscriptions /> },
+    { path: pathes.about, element: <About /> },
     { path: "*", element: <NoPage /> },
   ];
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<Main user={data.user} isFetching={data.isFetching} />}
-      >
-        {routes.map((route) => (
-          <Route key={route.path} path={route.path} element={route.element} />
-        ))}
-      </Route>
-    </Routes>
+    <UserProvider>
+      <Routes>
+        <Route path="/" element={<Main />}>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
+        </Route>
+      </Routes>
+    </UserProvider>
   );
 }
 

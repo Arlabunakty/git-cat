@@ -1,11 +1,13 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import Header from "./Header";
+import { mock as mockUseUser } from "../../contexts/__mocks__/UserContext";
+
+jest.mock("./../../contexts/UserContext");
 
 test("display user statistics", async () => {
-  const { container } = render(
-    <Header followers={12} public_repos={10} received_events={13} />
-  );
+  mockUseUser();
+  const { container } = render(<Header />);
 
   const img = container.getElementsByTagName("img");
 
