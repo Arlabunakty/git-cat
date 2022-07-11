@@ -5,11 +5,13 @@ import { act } from "react-dom/test-utils";
 import { names } from "./Routes";
 import { createMemoryHistory } from "history";
 import { mock } from "./services/__mocks__/GitHubUserService";
+import UserContext from "./contexts/UserContext";
 
 jest.mock("./services/GitHubUserService");
 jest.mock("./contexts/UserContext");
 
 beforeEach(() => {
+  UserContext.__mock();
   mock();
 });
 

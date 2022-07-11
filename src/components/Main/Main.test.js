@@ -2,8 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import Main from "./Main";
-import { user } from "./../../__test__/GitHubUser";
-import { mock as mockUseUser } from "../../contexts/__mocks__/UserContext";
+import UserContext from "./../../contexts/UserContext";
 
 const mockUserInfo = jest.fn();
 
@@ -13,29 +12,23 @@ jest.mock("./../UserInfo/UserInfo", () => (props) => {
 });
 jest.mock("./../../contexts/UserContext");
 
-beforeEach(() => {
-  mockUseUser();
-});
-
 test("When fetch in progress inform user", async () => {
-  const { container } = render(<Main />);
+  UserContext.__mockLoading();
+
+  const { container } = render(<Main />, { wrapper: BrowserRouter });
 
   expect(container.textContent).toEqual("Fetching...");
 });
 
 test("If isFetching=false and user passed, then UserInfo is called with props from user", () => {
+  UserContext.__mock();
   render(<Main />, { wrapper: BrowserRouter });
 
-  expect(mockUserInfo).toHaveBeenCalledWith(
-    expect.objectContaining({
-      name: user.name,
-      email: user.email,
-      avatar_url: user.avatar_url,
-    })
-  );
+  expect(mockUserInfo).toHaveBeenCalledTimes(1);
 });
 
 it("has copyright in the footer", async () => {
+  UserContext.__mock();
   const { container } = render(<Main />, {
     wrapper: BrowserRouter,
   });

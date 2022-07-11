@@ -9,7 +9,7 @@ import NoPage from "./components/NoPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { pathes } from "./Routes";
-import { UserProvider } from "./contexts/UserContext";
+import UserContext from "./contexts/UserContext";
 
 library.add(fas);
 
@@ -26,7 +26,7 @@ function App() {
   ];
 
   return (
-    <UserProvider>
+    <UserContext.UserProvider>
       <Routes>
         <Route path="/" element={<Main />}>
           {routes.map((route) => (
@@ -34,7 +34,7 @@ function App() {
           ))}
         </Route>
       </Routes>
-    </UserProvider>
+    </UserContext.UserProvider>
   );
 }
 

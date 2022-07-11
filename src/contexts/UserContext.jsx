@@ -2,28 +2,19 @@ import React, {
   useContext,
   useEffect,
   useState,
-  ReactNode,
   useMemo,
 } from "react";
 import { useLocation } from "react-router-dom";
 import * as userService from "../services/GitHubUserService";
 
-interface IUserContext {
-  user?: any;
-  loading: boolean;
-  error?: any;
-}
+const UserContext = React.createContext({});
 
-const UserContext = React.createContext<IUserContext>({} as IUserContext);
-
-export function UserProvider({
+function UserProvider({
   children,
-}: {
-  children: ReactNode;
-}): JSX.Element {
-  const [user, setUser] = useState<any>();
-  const [error, setError] = useState<any>();
-  const [loading, setLoading] = useState<boolean>(true);
+}) {
+  const [user, setUser] = useState();
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(true);
 
   const location = useLocation();
 
@@ -38,7 +29,7 @@ export function UserProvider({
       .catch((_error) => setError(_error))
       .finally(() => setLoading(false));
   }, []);
-  const memoedValue = useMemo<IUserContext>(
+  const memoedValue = useMemo(
     () => ({
       user,
       loading,
@@ -49,13 +40,18 @@ export function UserProvider({
 
   return (
     <UserContext.Provider value={memoedValue}>
+      {loading && <h1>Fetching...</h1>}
       {!loading && children}
     </UserContext.Provider>
   );
 }
 
-export function useUser() {
+function useUser() {
   return useContext(UserContext);
 }
 
-export default useUser;
+export default {
+  useUser,
+  UserProvider,
+  UserContext
+};

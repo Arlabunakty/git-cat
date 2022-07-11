@@ -1,10 +1,10 @@
 import React from "react";
 import "./Header.css";
 import octocatLogo from "./../../assets/octocat.png";
-import useUser from "../../contexts/UserContext";
+import UserContext from "../../contexts/UserContext";
 
 const Header = () => {
-  const { user } = useUser();
+  const { user } = UserContext.useUser();
   const rows = [
     { name: "Received events", value: user.received_events },
     { name: "Followers", value: user.followers },

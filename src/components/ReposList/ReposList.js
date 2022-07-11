@@ -2,10 +2,10 @@ import React from "react";
 import * as userService from "./../../services/GitHubUserService";
 import DataTable from "./../DataTable/DataTable";
 import useAsyncFunction from "./../../useAsyncFunction";
-import useUser from "../../contexts/UserContext";
+import UserContext from "../../contexts/UserContext";
 
 const ReposList = () => {
-  const { user } = useUser();
+  const { user } = UserContext.useUser();
   const headers = [
     {
       name: "Owner",

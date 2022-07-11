@@ -44,6 +44,7 @@ exports[`display user statistics 1`] = `
         email
         : 
       </b>
+      email@test.com
     </span>
     <span>
       <b>

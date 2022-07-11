@@ -7,7 +7,6 @@ import {
   mockFetchUserSubscriptions,
 } from "./../../services/__mocks__/GitHubUserService";
 import Subscriptions from "./Subscriptions";
-import { mock as mockUseUser } from "../../contexts/__mocks__/UserContext";
 
 jest.mock("./../../services/GitHubUserService");
 const mockDataTable = jest.fn();
@@ -15,7 +14,6 @@ jest.mock("./../DataTable/DataTable", () => (props) => mockDataTable(props));
 jest.mock("./../../contexts/UserContext");
 
 beforeEach(() => {
-  mockUseUser();
   mockUserService();
   mockDataTable.mockImplementation((props) => <mock-DataTableComponent />);
 });

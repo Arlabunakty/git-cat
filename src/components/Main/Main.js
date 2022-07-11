@@ -4,10 +4,10 @@ import "./Main.css";
 import SideMenu from "./../SideMenu/SideMenu";
 import UserInfo from "./../UserInfo/UserInfo";
 import Header from "./../Header/Header";
-import useUser from "../../contexts/UserContext";
+import UserContext from "../../contexts/UserContext";
 
 const Main = () => {
-  const { loading } = useUser();
+  const { loading } = UserContext.useUser();
   if (loading) {
     return <p>Fetching...</p>;
   }

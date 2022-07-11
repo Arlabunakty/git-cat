@@ -1,6 +1,6 @@
 import React from "react";
 import "./About.css";
-import useUser from "../../contexts/UserContext";
+import UserContext from "../../contexts/UserContext";
 
 const fields = [
   { name: "bio", propertyName: "bio" },
@@ -16,12 +16,12 @@ const fields = [
 
 class About extends React.Component {
   render() {
-    const { user } = useUser();
+    const { user } = UserContext.useUser();
     return (
       <div className="about-container">
         <img className="about-avatar" src={user.avatar_url} alt="avatar" />
         <div className="about-text">
-          <h1>{this.props.user.name}</h1>
+          <h1>{user.name}</h1>
           <h3 className="account-details">ACCOUNT DETAILS</h3>
           {fields.map((f) => (
             <span key={f.name}>

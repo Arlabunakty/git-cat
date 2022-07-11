@@ -1,9 +1,9 @@
 import React from "react";
 import "./UserInfo.css";
-import { useUser } from "../../contexts/UserContext";
+import UserContext from "../../contexts/UserContext";
 
 const UserInfo = () => {
-  const { user } = useUser();
+  const { user } = UserContext.useUser();
   return (
     <div className="user-avatar">
       <img src={user.avatar_url} alt="avatar" />
