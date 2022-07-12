@@ -9,6 +9,7 @@ import App from "./App";
 jest.mock("./services/GitHubUserService");
 const mockMain = jest.fn();
 jest.mock("./components/Main/Main", () => (props) => mockMain(props));
+jest.mock("./contexts/UserContext");
 
 beforeEach(() => {
   mockMain.mockImplementation((props) =>
@@ -26,18 +27,7 @@ it("when userService.fetchUser fails Promise.reject then show empty user", async
 
   await screen.findByTestId("mockMain");
 
-  expect(mockMain).toHaveBeenNthCalledWith(
-    1,
-    expect.objectContaining({ user: {}, isFetching: true })
-  );
-  expect(mockMain).toHaveBeenNthCalledWith(
-    2,
-    expect.objectContaining({ user: {}, isFetching: true })
-  );
-  expect(mockMain).toHaveBeenNthCalledWith(
-    3,
-    expect.objectContaining({ user: {}, isFetching: false })
-  );
+  expect(mockMain).toHaveBeenNthCalledWith(1, expect.objectContaining({}));
 });
 
 it("when userService.fetchUser successed, then pass user to Main component", async () => {
@@ -47,16 +37,5 @@ it("when userService.fetchUser successed, then pass user to Main component", asy
 
   await screen.findByTestId("mockMain");
 
-  expect(mockMain).toHaveBeenNthCalledWith(
-    1,
-    expect.objectContaining({ user: {}, isFetching: true })
-  );
-  expect(mockMain).toHaveBeenNthCalledWith(
-    2,
-    expect.objectContaining({ user: {}, isFetching: true })
-  );
-  expect(mockMain).toHaveBeenNthCalledWith(
-    3,
-    expect.objectContaining({ user: user, isFetching: false })
-  );
+  expect(mockMain).toHaveBeenNthCalledWith(1, expect.objectContaining({}));
 });

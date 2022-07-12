@@ -4,24 +4,22 @@ import "./Main.css";
 import SideMenu from "./../SideMenu/SideMenu";
 import UserInfo from "./../UserInfo/UserInfo";
 import Header from "./../Header/Header";
+import UserContext from "../../contexts/UserContext";
 
-const Main = ({ isFetching, user }) => {
-  if (isFetching) {
+const Main = () => {
+  const { loading } = UserContext.useUser();
+  if (loading) {
     return <p>Fetching...</p>;
   }
   return (
     <div data-testid="main" className="main">
       <div className="left">
-        <UserInfo
-          avatar_url={user.avatar_url}
-          name={user.name}
-          email={user.email}
-        />
+        <UserInfo />
         <SideMenu />
         <div className="footer">GL JS 2022</div>
       </div>
       <div className="right">
-        <Header {...user} />
+        <Header />
         <div className="content">
           <Content />
         </div>
